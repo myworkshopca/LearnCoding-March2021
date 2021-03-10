@@ -1,4 +1,3 @@
-print("hello welcome Python!")
-name = input("What is your name?")
-print("Hello, " + name + " Nice to meet you!")
-input("Press Enter to exit!")
+print("hello python world!")
+name = input("What is your name? ")
+print("Hi " + name + ", nice to meet you!")
