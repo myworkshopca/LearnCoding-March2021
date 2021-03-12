@@ -1,2 +1,2 @@
 language="python3"
-run="python basic/types.py"
+run="python basic/ifelse.py"
