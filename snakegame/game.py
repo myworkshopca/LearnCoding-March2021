@@ -2,6 +2,17 @@ import curses
 from curses import textpad
 import random
 
+def gen_food(stdscr):
+
+    sh, sw = stdscr.getmaxyx()
+
+    food = [
+        random.randint(4, sh - 4),
+        random.randint(4, sw - 4) 
+    ]
+
+    return food
+
 def game(stdscr):
 
     # turn off the default cursor
@@ -32,10 +43,7 @@ def game(stdscr):
     direction = curses.KEY_RIGHT
 
     food_ch = "*"
-    food = [
-        random.randint(4, sh - 4),
-        random.randint(4, sw - 4) 
-    ]
+    food = gen_food(stdscr)
     stdscr.addstr(food[0], food[1], food_ch)
 
     while True:
