@@ -1,2 +1,2 @@
 language="python3"
-run="python snakegame/20210423.py"
+run="python tetris/tetris.py"

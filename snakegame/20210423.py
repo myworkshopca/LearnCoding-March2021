@@ -1,27 +1,35 @@
 import curses
 
-#def init_play():
-def simple(stdscr):
+def setup_board(stdscr, border_x_axis):
 
     stdscr.nodelay(True)
     stdscr.timeout(100)
 
     sh, sw = stdscr.getmaxyx()
 
-    body_ch = chr(9608)
-    body = [
+    b = [
        sh // 2,
        sw // 2
     ]
 
-    stdscr.addstr(body[0], body[1], body_ch)
+    #stdscr.addstr(b[0], b[1], body_ch)
 
-    border_x = sw // 2 + 10
     # paint the border.
-    for y in range(5, sh - 5):
-        stdscr.addstr(y, border_x, chr(9474))
+    for y in range(2, sh - 2):
+        stdscr.addstr(y, border_x_axis, chr(9474))
 
-    # game loop
+    return b
+
+#def init_play():
+def simple(stdscr):
+
+    sh, sw = stdscr.getmaxyx()
+    body_ch = chr(9608)
+    border_x = sw // 2 + 10
+
+    body = setup_board(stdscr, border_x)
+
+    # game / control loop
     while True:
         # play loop
         while True:
@@ -48,18 +56,11 @@ def simple(stdscr):
         key = stdscr.getch()
         if key == ord('r'):
             # restart game! 
+            stdscr.erase()
             # clear screen.
-            stdscr.addstr(3, 20, " " * 10)
-            stdscr.addstr(4, 20, " " * 50)
-            # initialize game.
-            body = [
-                sh // 2,
-                sw // 2
-            ]
-            stdscr.nodelay(True)
-            stdscr.timeout(100)
+            body = setup_board(stdscr, border_x)
         else:
-            # break the game loop!
+            # break the game/contorl loop!
             break;
 
 curses.wrapper(simple)
