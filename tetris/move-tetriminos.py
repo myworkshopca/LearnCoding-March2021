@@ -20,19 +20,21 @@ def tetris(stdscr):
 
     stdscr.addstr(2, 20, 'Move Tetriminos...')
 
-    mino = [
-        [4,3], [4,5], [5,5], [5,3]
-    ]
-
     # define the character for each block of a tetrimino
     block_ch = chr(9609)
     # eraser character.
     eraser_ch = ' '
 
+    # define the initial coordinates for a tetrimino
+    mino = [
+        [4,3], [4,5], [5,5], [5,3]
+    ]
+
     # paint the tetrimino
     for unit in mino:
         stdscr.addstr(unit[0], unit[1], block_ch)
 
+    # the moving loop...
     while True:
         key = stdscr.getch()
 
@@ -50,11 +52,13 @@ def tetris(stdscr):
             [mino[0][0], mino[0][1]],
             [mino[3][0], mino[3][1]]
         ]
-        # record the new y,x for the tetriminos.
+        # record the new coordinates for the tetriminos,
+        # so we can move next loop!
         mino = [
            mino[1], new_yxs[0], new_yxs[1], mino[2]
         ]
-        # hard code to move right one block (2 x-axis unit)
+        # paint the block characters and eraser characters to make the
+        # tetrimino move.
         for unit in new_yxs:
             stdscr.addstr(unit[0], unit[1], block_ch)
         for unit in erase_yxs:
