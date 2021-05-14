@@ -18,7 +18,8 @@ def tetris(stdscr):
 
     curses.curs_set(False)
 
-    stdscr.addstr(2, 20, 'Move Tetriminos...')
+    stdscr.addstr(1, 20, 'Move Tetriminos...')
+    stdscr.addstr(2, 20, 'Press "q" to exit! Any other key to move!')
 
     # define the character for each block of a tetrimino
     block_ch = chr(9609)
